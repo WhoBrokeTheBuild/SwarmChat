@@ -1,6 +1,7 @@
 package main
 
 import (
+    "os"
     "log"
     "net/http"
 
@@ -21,6 +22,7 @@ func main() {
     http.Handle("/", fs)
 
 	http.HandleFunc("/ws", handleConnections)
+    http.HandleFunc("/kill", handleKill)
 
 	go handleMessages()
 
@@ -29,6 +31,10 @@ func main() {
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
+}
+
+func handleKill(w http.ResponseWriter, r *http.Request) {
+    os.Exit(0)
 }
 
 func handleConnections(w http.ResponseWriter, r *http.Request) {
