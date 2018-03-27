@@ -1,6 +1,6 @@
 
 image:
-	docker build -t manager .
+	docker build -t worker .
 
 run:
-	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -p 5000:80 manager
+	docker run --rm -p 5500:80 worker

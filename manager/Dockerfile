@@ -2,7 +2,7 @@ FROM golang:1.8
 
 COPY vendor/* /go/src/
 
-WORKDIR /go/src/example.com/manager
+WORKDIR /go/src/github.com/whobrokethebuild/manager
 COPY . .
 
 RUN go get -d -v ./...

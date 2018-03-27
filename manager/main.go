@@ -29,7 +29,7 @@ func pageNew(w http.ResponseWriter, r *http.Request) {
     _, err = cli.ServiceCreate(context.Background(), swarm.ServiceSpec{
         TaskTemplate: swarm.TaskSpec{
             ContainerSpec: &swarm.ContainerSpec{
-                Image: "nginx:latest",
+                Image: "slanewalsh/swarmchat:worker",
             },
             RestartPolicy: &swarm.RestartPolicy{
                 Condition: swarm.RestartPolicyConditionNone,
@@ -71,7 +71,7 @@ func pageNew(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-    fs := http.FileServer(http.Dir("../public"))
+    fs := http.FileServer(http.Dir("public"))
     http.Handle("/", fs)
 
     http.HandleFunc("/new", pageNew)
